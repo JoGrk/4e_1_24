@@ -63,7 +63,8 @@ MODIFY Projekt char(4) AFTER SSN;
 ALTER TABLE Przypisanie
 CHANGE COLUMN SSN Naukowiec int;
 -- 15. Z tabeli Naukowcy usuń pole Data_urodzenia
-
+ALTER TABLE Naukowcy
+DROP data_urodzenia;
 -- 16. Zaimportuj dane
 
 INSERT INTO Naukowcy(Kod,Nazwisko) 
