@@ -64,5 +64,11 @@ FROM towar
 WHERE cena BETWEEN 12.50 AND 35
     AND waga BETWEEN 0.5 AND 2.5;
 -- jw. posortowane malejąco wg NAZWY ; 
-
+SELECT Nazwa,Rodzaj,(ilosc*cena)
+FROM towar
+WHERE cena BETWEEN 12.50 AND 35
+    AND waga BETWEEN 0.5 AND 2.5
+ORDER BY Nazwa desc; 
 -- różne RODZAJE towarów (bez powtórek) ; (wskazówka: SELECT DISTINCT...)
+SELECT DISTINCT RODZAJ
+FROM towar;
