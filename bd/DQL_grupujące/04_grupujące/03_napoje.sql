@@ -10,11 +10,32 @@ GROUP BY kolor
 ORDER BY srednia_kalorycznosc;
 
 -- 3. Wyświetl średnią cenę drinków z lodem i drinków bez lodu (w jednym zapytaniu). zmień nazwę kolumny srednia_cena.
+SELECT lod, AVG(cena) AS srednia_cena
+FROM drinki_informacje
+GROUP BY lod;
  
 -- 4. Wyświetl ilość napojów z poszczególnych kolorów. Zmodyfikuj zapytanie tak, aby były wyświetlane tylko te kolory, w których są co najmniej dwa drinki
- 
+ SELECT kolor, COUNT(*)
+ FROM drinki_informacje
+ GROUP BY kolor
+ HAVING COUNT(*)>=2;
 -- 5. Ile jest napojów w poszczególnych kolorach. Do zapytania wybierz tylko drinki z lodem. 
- 
+SELECT kolor, COUNT(*)
+FROM drinki_informacje
+WHERE lod = 'T'
+GROUP BY kolor;
+
 -- 6. Wyświetl średnią kaloryczność napojów z lodem i bez lodu (w jednym zapytaniu). - do zapytania wybierz tylko drinki rozpoczynające się literą S lub B. Posortuj według średniej kaloryczności.
+
+SELECT lod, AVG(kalorie) AS srednia_kalorycznosc
+FROM drinki_informacje
+WHERE nazwa LIKE "S%" OR nazwa LIKE "B%"
+GROUP BY lod
+ORDER BY srednia_kalorycznosc;
  
 -- 7. Wyświetl maksymalną ilość węglowodanów w poszczególnych kolorach. Wyświetl tylko te wiersze, w których maksymalna ilość węglowodanów jest większa od 5. Dane posortuj malejąco według maksymalnej ilości kalorii. 
+SELECT kolor, MAX(weglowodany)
+FROM drinki_informacje
+GROUP BY kolor
+HAVING MAX(weglowodany)>5
+ORDER BY MAX(kalorie) desc;
