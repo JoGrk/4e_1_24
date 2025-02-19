@@ -12,6 +12,12 @@ FROM filmy
     JOIN rezyserzy ON filmy.RezyserID= rezyserzy.IDRezyser ";
 $result=$link -> query($sql);
 $movies2=$result -> fetch_all(1);
+
+$sql="SELECT tytul, gatunek, tresc
+FROM filmy
+    JOIN recenzje ON filmy.recenzjaID= recenzje.IDRecenzja;";
+$result=$link -> query($sql);
+$movies3=$result -> fetch_all(1);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +39,13 @@ $movies2=$result -> fetch_all(1);
 
     <h2>tytuly i rezyserzy</h2>
     <ul>
-        <li>gwiezdne wojny skibidi mbappe</li>
+        <!-- <li> <strong> gwiezdne wojny </strong> George Lucas</li> -->
+         <?php
+        foreach($movies2 as $movie){
+            echo "<li> <strong> {$movie['Tytul']} </strong>
+             {$movie['Imie']} {$movie['Nazwisko']}</li>";
+        }
+         ?>
     </ul>
 </body>
 
