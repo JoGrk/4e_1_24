@@ -25,6 +25,12 @@ $movies3=$result -> fetch_all(1);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        table, tr, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
 </head>
 <body>
     <h2>Tytuły Filmów</h2>
@@ -47,6 +53,33 @@ $movies3=$result -> fetch_all(1);
         }
          ?>
     </ul>
+
+    <h2>Recenzje</h2>
+    <table>
+        <tr>
+            <th>Tytul</th>
+            <th>Gatunek</th>
+            <th>Treść</th>
+        </tr>
+        <!-- <tr>
+            <td>Matrix</td>
+            <td>SF</td>
+            <td>Dobry film</td>
+        </tr> -->
+        <?php
+        foreach ($movies3 as $movie){
+            echo "        
+            <tr>
+
+            <td> {$movie['tytul']} </td>
+            <td>{$movie['gatunek']}</td>
+            <td>{$movie['tresc']}</td>
+            
+            </tr>";
+
+        }
+        ?>
+    </table>
 </body>
 
 </html>
