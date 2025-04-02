@@ -45,8 +45,23 @@ GROUP BY Id_przedszkola
 HAVING COUNT(*) > 15
 ORDER BY COUNT(*) desc;
 -- G. Policz, ilu jest chętnych do poszczególnych przedszkoli. Wyświetl nazwy przedszkoli i liczbę miejsc w przedszkolach. Czy są takie przedszkola, w których liczba chętnych jest różna od ilości miejsc? 
- SELECT nazwa_przedszkola, Id_przedszkola, Liczba_miejsc
+ SELECT nazwa_przedszkola, przedszkola.Id_przedszkola, Liczba_miejsc, COUNT(*)
+ FROM przedszkola
+ INNER JOIN dzieci ON przedszkola.Id_przedszkola = dzieci.Id_przedszkola 
+ GROUP BY przedszkola.Id_przedszkola
+ HAVING COUNT(*) != Liczba_miejsc;
+
  
 -- H. Utwórz uporządkowaną alfabetycznie według nazwisk, listę pięcioletnich dziewczynek, które są zapisane do przedszkola Smerf lub Stokrotka.
-
+SELECT nazwisko, imie
+FROM dzieci
+    JOIN przedszkola ON przedszkola.Id_przedszkola = dzieci.Id_przedszkola
+WHERE wiek=5 AND plec="dziewczynka"
+    AND (nazwa_przedszkola LIKE "%Smerf%" OR nazwa_przedszkola LIKE "%Stokrotka%0");
 -- I.  Podaj nazwy czterech przedszkoli, które mają największą ilość chętnych (uporządkowane malejąco według ilości chętnych) 
+SELECT nazwa_przedszkola, COUNT(*)
+FROM przedszkola
+INNER JOIN dzieci ON przedszkola.Id_przedszkola = dzieci.Id_przedszkola 
+GROUP BY nazwa_przedszkola
+ORDER BY COUNT(*) DESC 
+LIMIT 4;
