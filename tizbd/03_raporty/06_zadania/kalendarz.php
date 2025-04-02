@@ -43,6 +43,22 @@ $days=$result -> fetch_all(1);
 
     <main>
         <!-- skrypt 2 -->
+        <!-- <section class='day'>
+            <h5>2020-07-01</h5>
+            <p>Projekt z programowania</p>
+        </section> -->
+        <?php
+        foreach($days as $day){
+            echo "
+            <section class='day'>
+                <h5>{$day['dataZadania']}</h5>
+                <p>{$day['wpis']}</p>
+            </section>
+            ";
+        }
+
+
+        ?>
     </main>
 
     <footer>
