@@ -27,12 +27,22 @@
 
 -- Funkcje agregacyjne: SUM(), AVG(), MAX(), MIN(), COUNT(*)
 -- 1.Łączna liczba sprzedanych produktów.
+SELECT SUM(ilosc) 
+FROM sprzedaz
 
 -- 2.Minimalna (niezerowa), maksymalna i średnia liczba punktów przypadających na jednego pracownika banku.
-
+SELECT nrPracownika, min(ilosc * punktacja), max(ilosc * punktacja), avg(ilosc * punktacja) 
+FROM pracownicy
+    JOIN sprzedaz ON sprzedaz.nrPracownika = pracownicy.nr
+    JOIN produkty ON produkty.nazwa = sprzedaz.nazwaProduktu
+GROUP BY nrPracownika;
 -- 3.Liczba pracowników banku.
 
 -- 4.Liczba pracowników regionu 'Północ'.
+SELECT COUNT(*)
+FROM pracownicy 
+    JOIN oddzialy ON pracownicy.NrRozliczOddz = oddzialy.NrRozlicz
+WHERE region LIKE '%noc';
 
 -- GROUP BY i HAVING
 -- 1.Nr oddziału, miejscowość oraz liczba pracowników w oddziale.

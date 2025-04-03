@@ -15,3 +15,10 @@ WHERE miesiac='lipiec';
 SELECT distinct miesiac
 FROM zadania
 WHERE miesiac LIKE 'l%';
+
+-- dodaje nowy wpis z datą  2020-07-13
+
+INSERT INTO zadania
+    (dataZadania , wpis , miesiac , rok )
+VALUES
+    ('2020-07-13','Dobri den','lipiec',2020);

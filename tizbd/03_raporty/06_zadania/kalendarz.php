@@ -1,6 +1,16 @@
 <?php
 $link= new mysqli('localhost', 'root', '', '4e_1_zadania');
 
+if(!empty($_POST['taskname'])){
+    $taskname=$_POST['taskname'];
+    $sql = "INSERT INTO zadania
+        (dataZadania , wpis , miesiac , rok )
+    VALUES
+        ('2020-07-13','$taskname','lipiec',2020)
+    ";
+    $result=$link -> query($sql);
+}
+
 $sql="SELECT miesiac , rok
 FROM zadania
 WHERE dataZadania='2020-07-01'";
@@ -12,6 +22,8 @@ FROM zadania
 WHERE miesiac='lipiec'";
 $result=$link -> query($sql);
 $days=$result -> fetch_all(1);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -62,6 +74,12 @@ $days=$result -> fetch_all(1);
     </main>
 
     <footer>
+        <form action="" method="post">
+            <p>dodaj wpis</p>
+            <input type="text" name="taskname" id="">
+            <button>DODAj</button>
+            
+        </form>
         <p>Stronę wykonał:00000000</p>
     </footer>
 </body>
