@@ -10,3 +10,10 @@ FROM rezyserzy
 GROUP BY IDRezyser;
 
 
+SELECT imie, nazwisko
+FROM rezyserzy;
+
+INSERT INTO rezyserzy
+(imie, nazwisko)
+VALUES
+('Mikolaj', 'Staszek');

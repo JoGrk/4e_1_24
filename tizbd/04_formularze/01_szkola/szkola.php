@@ -41,6 +41,10 @@ $students = $result -> fetch_all(1);
     <form action="aktualizacja.php" method="POST">
         <label for="studentID">Podaj ID ucznia</label>
         <input type="number" name="studentID" id="studentID">
+        <br>
+        <label for="studentID">Podaj miejscowosc urodzenia</label>
+        <input type="text" name="birthplace" id="birthplace">
+        <br>
         <button type="submit">Wyślij</button>
     </form>
 
