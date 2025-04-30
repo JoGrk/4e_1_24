@@ -19,3 +19,13 @@ FROM products;
 SELECT ProductName, Price
 FROM products
 WHERE supplierID=1;
+
+SELECT ShipperID, ShipperName
+FROM shippers;
+
+SELECT OrderID , OrderDate
+FROM orders;
+
+SELECT OrderID , OrderDate
+FROM orders
+WHERE shipperID=1;
