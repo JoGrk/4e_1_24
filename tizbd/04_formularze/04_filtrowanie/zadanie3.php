@@ -5,6 +5,7 @@ $sql="SELECT MIN(price) AS min, MAX(price) AS max, AVG(price) AS avg
 FROM products;";
 $result=$link->query($sql);
 $ceny=$result->fetch_array();
+//  {$ceny['min']}
 
 
  ?>

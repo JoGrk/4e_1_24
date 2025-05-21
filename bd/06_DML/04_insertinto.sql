@@ -55,10 +55,26 @@ FROM Customers
 WHERE Country LIKE 'Germany';
 -- 10. Utwórz tabelę Archiwum zawierającą wszystkie dane z tabeli Orders dotyczące zamówień z 1996 roku
 
- 
+ CREATE TABLE Archiwum as
+ SELECT *
+ FROM Orders
+ WHERE OrderDate LIKE '1996%';
 
 -- 11. Usuń z tabeli Orders wszystkie zamówienia z 1996 roku
 
--- 12. Do tabeli Archiwum dodaj wszystkie dane dotyczące zamówień ze stycznia 1997 roku
+DELETE FROM order_details
+WHERE OrderID IN (
+    SELECT OrderID
+    FROM orders
+    WHERE OrderDate LIKE '1996%'
+);
 
+DELETE FROM orders
+WHERE OrderDate LIKE '1996%';
+
+-- 12. Do tabeli Archiwum dodaj wszystkie dane dotyczące zamówień ze stycznia 1997 roku
+INSERT INTO Archiwum(OrderID, CustomerID, EmployeeID, OrderDate, ShipperID)
+SELECT OrderID, CustomerID, EmployeeID, OrderDate, ShipperID
+FROM orders
+WHERE OrderDate LIKE "1997-01%";
  
