@@ -10,3 +10,6 @@ FROM customers;
 SELECT customerName
 FROM customers
 WHERE country='Poland';
+
+SELECT MIN(price) AS min, MAX(price) AS max, AVG(price) AS avg
+FROM products;
