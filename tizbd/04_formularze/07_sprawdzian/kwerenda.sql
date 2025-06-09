@@ -13,3 +13,14 @@ UPDATE products
 
 
 -- po wybraniu dostawcy i modyfikacji ceny zmieniane są ceny produktu wybranego dostawcy w taki sposób, że modyfikacja oznacza zmianę procentową ceny (np. price+price*modyfikacja)
+ 
+ 
+--  Grupa opcji: dostawca, kategoria. Po wybraniu wyświetlony jest raport pokazujący nazwę produktu, nazwę dostawcy i cenę lub nazwę produktu, nazwę kategorii i cenę (w zależności od wybranej na formularzu opcji) w postaci listy tabeli 
+
+SELECT productName, supplierName, price
+FROM products
+INNER JOIN suppliers ON suppliers.supplierID=products.supplierID;
+
+SELECT productName, categoryName, price
+FROM products
+INNER JOIN categories ON categories.categoryID=products.categoryID;
