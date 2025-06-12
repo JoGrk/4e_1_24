@@ -1,9 +1,20 @@
 <?php
 $link = new mysqli('localhost','root','','4e_1_pilka');
+
+$position_f = $_POST['position_f'] ?? NULL;
+if($position_f){
+    $sql = "SELECT imie, nazwisko
+FROM zawodnik
+WHERE pozycja_id = $position_f";
+$result = $link -> query($sql);
+$players = $result -> fetch_all(1);
+}
+
 $sql= "SELECT zespol1,zespol2,wynik,data_rozgrywki
         FROM rozgrywka
         WHERE zespol1='EVG'";
-$result = 
+$result =  $link -> query($sql);
+$games = $result -> fetch_all(1);
 ?>
 
 <!DOCTYPE html>
@@ -22,6 +33,22 @@ $result =
     
     <section class="games">
         <!-- skrypt 1 -->
+        <!-- <section class="game">
+            <h3><zespół 1> - <zespół 2></h3>
+            <h4>wynik</h4>
+            <p>w dniu: <data rozgrywki></p>
+        </section> -->
+        <?php
+        foreach($games as $game){
+            echo "
+            <section class='game'>
+                <h3>{$game['zespol1']} - {$game['zespol2']}</h3>
+                <h4>{$game['wynik']}</h4>
+                <p>w dniu: {$game['data_rozgrywki']}</p>
+            </section>
+            ";
+        }
+        ?>
     </section>
     
     <main>
@@ -36,7 +63,14 @@ $result =
                 <button>Sprawdź</button>
             </form>
             <ul>
-                <!-- skrypt 2 -->
+                <!-- <li><p>imie nazwisko</p></li> -->
+                <?php
+                    if(isset($_POST['position_f'])){
+                        foreach($players as $player){
+                            echo "<li><p>{$player['imie']} {$player['nazwisko']}</p></li>";
+                        }
+                    }
+                ?>
             </ul>
         </section>
 
